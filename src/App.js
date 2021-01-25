@@ -28,18 +28,6 @@ const App = () => {
         },
       ]
     },
-    {
-      name: 'Custom',
-      colour: '#5CA699',
-      blocks: [
-        {
-          type: 'new_boundary_function'
-        },
-        {
-          type: 'return'
-        },
-      ]
-    }
   ]
   function workspaceDidChange(workspace) {
     const newXml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace));
@@ -66,7 +54,7 @@ const App = () => {
         workspaceDidChange={workspaceDidChange}
       />
       <pre id="generated-xml" />
-      <textarea id="code" style={{ height: "200px", width: "400px" }} value="" />
+      <textarea id="code" style={{ height: "200px", width: "400px" }} />
     </>
   )
 }

@@ -121,12 +121,12 @@ Blockly.Blocks['routines'] = {
 
 // FUNCTIONS
 Blockly.JavaScript['startBlock'] = function(block) {
-    const valueMaintainer = Blockly.JavaScript.valueToCode(block, 'maintainer', Blockly.JavaScript.ORDER_ATOMIC);
-    const valueMail = Blockly.JavaScript.valueToCode(block, 'mail', Blockly.JavaScript.ORDER_ATOMIC);
-    const valueArea = Blockly.JavaScript.valueToCode(block, 'area', Blockly.JavaScript.ORDER_ATOMIC);
-    const valueXml = Blockly.JavaScript.valueToCode(block, 'xmlVersion', Blockly.JavaScript.ORDER_ATOMIC);
-    const valueEncoding = Blockly.JavaScript.valueToCode(block, 'encoding', Blockly.JavaScript.ORDER_ATOMIC);
-    const code = `
+    var valueMaintainer = Blockly.JavaScript.valueToCode(block, 'maintainer', Blockly.JavaScript.ORDER_ATOMIC);
+    var valueMail = Blockly.JavaScript.valueToCode(block, 'mail', Blockly.JavaScript.ORDER_ATOMIC);
+    var valueArea = Blockly.JavaScript.valueToCode(block, 'area', Blockly.JavaScript.ORDER_ATOMIC);
+    var valueXml = Blockly.JavaScript.valueToCode(block, 'xmlVersion', Blockly.JavaScript.ORDER_ATOMIC);
+    var valueEncoding = Blockly.JavaScript.valueToCode(block, 'encoding', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = `
     <!--    
     Maintainer: ${valueMaintainer}
     Mail: ${valueMail}
@@ -137,39 +137,39 @@ Blockly.JavaScript['startBlock'] = function(block) {
     return code;
   };
 Blockly.JavaScript['rawStartBlock'] = function(block) {
-    const valueXml = Blockly.JavaScript.valueToCode(block, 'xmlVersion', Blockly.JavaScript.ORDER_ATOMIC);
-    const valueEncoding = Blockly.JavaScript.valueToCode(block, 'encoding', Blockly.JavaScript.ORDER_ATOMIC);
-    const code = `
+    var valueXml = Blockly.JavaScript.valueToCode(block, 'xmlVersion', Blockly.JavaScript.ORDER_ATOMIC);
+    var valueEncoding = Blockly.JavaScript.valueToCode(block, 'encoding', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = `
     <?xml version=${valueXml} encoding=${valueEncoding}?>
     `;
     return code;
 };
 
 Blockly.JavaScript['moves'] = function(block) {
-    const valueTime1 = Blockly.JavaScript.valueToCode(block, 'time1', Blockly.JavaScript.ORDER_ATOMIC);
-    const valueTime2 = Blockly.JavaScript.valueToCode(block, 'time2', Blockly.JavaScript.ORDER_ATOMIC);
-    const valueLinear = Blockly.JavaScript.valueToCode(block, 'linear', Blockly.JavaScript.ORDER_ATOMIC);
-    const valueAngular = Blockly.JavaScript.valueToCode(block, 'angular', Blockly.JavaScript.ORDER_ATOMIC);
-    const code = `<action type='0' time_1='${valueTime1}' time_2='${valueTime2}' linear='${valueLinear}' angular='${valueAngular}'></action>\n`;
+    var valueTime1 = Blockly.JavaScript.valueToCode(block, 'time1', Blockly.JavaScript.ORDER_ATOMIC);
+    var valueTime2 = Blockly.JavaScript.valueToCode(block, 'time2', Blockly.JavaScript.ORDER_ATOMIC);
+    var valueLinear = Blockly.JavaScript.valueToCode(block, 'linear', Blockly.JavaScript.ORDER_ATOMIC);
+    var valueAngular = Blockly.JavaScript.valueToCode(block, 'angular', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = `<action type='0' time_1='${valueTime1}' time_2='${valueTime2}' linear='${valueLinear}' angular='${valueAngular}'></action>\n`;
     return code;
 };
 
 
 Blockly.JavaScript['features'] = function(block) {
-    const dropdownFeature = block.getFieldValue('feature');
-    const valueTime1 = Blockly.JavaScript.valueToCode(block, 'time1', Blockly.JavaScript.ORDER_ATOMIC);
-    const valueTime2 = Blockly.JavaScript.valueToCode(block, 'time2', Blockly.JavaScript.ORDER_ATOMIC);
-    const valueMode = Blockly.JavaScript.valueToCode(block, 'mode', Blockly.JavaScript.ORDER_ATOMIC);
-    const valueValue = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
-    const code = `<action type=${dropdownFeature} time_1='${valueTime1}' time_2='${valueTime2}' mode=${valueMode} value='${valueValue}'></action>\n`;
+    var dropdownFeature = block.getFieldValue('feature');
+    var valueTime1 = Blockly.JavaScript.valueToCode(block, 'time1', Blockly.JavaScript.ORDER_ATOMIC);
+    var valueTime2 = Blockly.JavaScript.valueToCode(block, 'time2', Blockly.JavaScript.ORDER_ATOMIC);
+    var valueMode = Blockly.JavaScript.valueToCode(block, 'mode', Blockly.JavaScript.ORDER_ATOMIC);
+    var valueValue = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = `<action type=${dropdownFeature} time_1='${valueTime1}' time_2='${valueTime2}' mode=${valueMode} value='${valueValue}'></action>\n`;
     return code;
 };
 
 Blockly.JavaScript['routines'] = function(block) {
-    const valueId = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
-    const valueCycles = Blockly.JavaScript.valueToCode(block, 'cycles', Blockly.JavaScript.ORDER_ATOMIC);
-    const statementsRoutinelist = Blockly.JavaScript.statementToCode(block, 'routineList');
-    const code = `
+    var valueId = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
+    var valueCycles = Blockly.JavaScript.valueToCode(block, 'cycles', Blockly.JavaScript.ORDER_ATOMIC);
+    var statementsRoutinelist = Blockly.JavaScript.statementToCode(block, 'routineList');
+    var code = `
     <routine id ='${valueId}' cycles='${valueCycles}'>
     \t${statementsRoutinelist}
     </routine>
