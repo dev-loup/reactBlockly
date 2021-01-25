@@ -1,34 +1,31 @@
-import './App.css';
-import './customBlocks/custom_Blocks'
-import React from 'react'
-import ReactBlockly from 'react-blockly'
+import './customBlocks/custom_Blocks';
+import React from 'react';
+import ReactBlockly from 'react-blockly';
 import Blockly from 'blockly';
+import './App.css';
 
-export default function App() {
+const App = () => {
   const initialXml = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="text" x="70" y="30"><field name="TEXT"></field></block></xml>';
   const toolboxCategories = [
     {
-      name: 'Logic',
+      name: 'Information',
       colour: '#5C81A6',
       blocks: [
         {
-          type: 'controls_if'
+          type: 'startBlock'
         },
         {
-          type: 'logic_compare'
+          type: 'rawStartBlock'
         }
       ]
     },
     {
-      name: 'Math',
+      name: 'Moves',
       colour: '#5CA65C',
       blocks: [
         {
-          type: 'math_round'
+          type: 'moves'
         },
-        {
-          type: 'math_number'
-        }
       ]
     },
     {
@@ -68,9 +65,10 @@ export default function App() {
         }}
         workspaceDidChange={workspaceDidChange}
       />
-      <pre id="generated-xml">
-      </pre>
-      <textarea id="code" style={{ height: "200px", width: "400px" }} value=""></textarea>
+      <pre id="generated-xml" />
+      <textarea id="code" style={{ height: "200px", width: "400px" }} value="" />
     </>
   )
 }
+
+export default App;
