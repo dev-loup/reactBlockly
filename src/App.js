@@ -1,33 +1,48 @@
-import './customBlocks/custom_Blocks';
 import React from 'react';
 import ReactBlockly from 'react-blockly';
 import Blockly from 'blockly';
 import './App.css';
+import './customBlocks/customaaa_Blocks';
 
 const App = () => {
   const initialXml = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="text" x="70" y="30"><field name="TEXT"></field></block></xml>';
   const toolboxCategories = [
     {
-      name: 'Information',
+      name: 'Logic',
       colour: '#5C81A6',
       blocks: [
         {
-          type: 'startBlock'
+          type: 'controls_if'
         },
         {
-          type: 'rawStartBlock'
+          type: 'logic_compare'
         }
       ]
     },
     {
-      name: 'Moves',
+      name: 'Math',
       colour: '#5CA65C',
       blocks: [
         {
-          type: 'moves'
+          type: 'math_round'
         },
+        {
+          type: 'math_number'
+        }
       ]
     },
+    {
+      name: 'Custom',
+      colour: '#5CA699',
+      blocks: [
+        {
+          type: 'new_boundary_function'
+        },
+        {
+          type: 'return'
+        },
+      ]
+    }
   ]
   function workspaceDidChange(workspace) {
     const newXml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace));

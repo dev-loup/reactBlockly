@@ -1,7 +1,62 @@
 import Blockly from 'blockly';
 import 'blockly/javascript';
 
-Blockly.Blocks['startBlock'] = {
+Blockly.defineBlocksWithJsonArray([
+    {
+        "type": "startBlock",
+        "message0": "Maintainer: %1 Mail: %2 Area: %3 XML Version: %4 Encoding: %5",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "maintainer",
+            "check": "String"
+          },
+          {
+            "type": "input_value",
+            "name": "mail",
+            "check": "String"
+          },
+          {
+            "type": "input_value",
+            "name": "area",
+            "check": "String"
+          },
+          {
+            "type": "input_value",
+            "name": "xmlVersion",
+            "check": "String"
+          },
+          {
+            "type": "input_value",
+            "name": "encoding",
+            "check": "String"
+          }
+        ],
+        "nextStatement": "Routine",
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": ""
+      }
+])
+
+// FUNCTIONS
+Blockly.JavaScript['startBlock'] = function(block) {
+    var valueMaintainer = Blockly.JavaScript.valueToCode(block, 'maintainer', Blockly.JavaScript.ORDER_ATOMIC);
+    var valueMail = Blockly.JavaScript.valueToCode(block, 'mail', Blockly.JavaScript.ORDER_ATOMIC);
+    var valueArea = Blockly.JavaScript.valueToCode(block, 'area', Blockly.JavaScript.ORDER_ATOMIC);
+    var valueXml = Blockly.JavaScript.valueToCode(block, 'xmlVersion', Blockly.JavaScript.ORDER_ATOMIC);
+    var valueEncoding = Blockly.JavaScript.valueToCode(block, 'encoding', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = `
+    <!--    
+    Maintainer: ${valueMaintainer}
+    Mail: ${valueMail}
+    ${valueArea}
+    -->
+    <?xml version=${valueXml} encoding=${valueEncoding}?>
+    `;
+    return code;
+  };
+/* Blockly.Blocks['startBlock'] = {
     init: () => {
         this.appendValueInput("maintainer")
             .setCheck("String")
@@ -119,23 +174,7 @@ Blockly.Blocks['routines'] = {
     }
   };
 
-// FUNCTIONS
-Blockly.JavaScript['startBlock'] = function(block) {
-    var valueMaintainer = Blockly.JavaScript.valueToCode(block, 'maintainer', Blockly.JavaScript.ORDER_ATOMIC);
-    var valueMail = Blockly.JavaScript.valueToCode(block, 'mail', Blockly.JavaScript.ORDER_ATOMIC);
-    var valueArea = Blockly.JavaScript.valueToCode(block, 'area', Blockly.JavaScript.ORDER_ATOMIC);
-    var valueXml = Blockly.JavaScript.valueToCode(block, 'xmlVersion', Blockly.JavaScript.ORDER_ATOMIC);
-    var valueEncoding = Blockly.JavaScript.valueToCode(block, 'encoding', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = `
-    <!--    
-    Maintainer: ${valueMaintainer}
-    Mail: ${valueMail}
-    ${valueArea}
-    -->
-    <?xml version=${valueXml} encoding=${valueEncoding}?>
-    `;
-    return code;
-  };
+
 Blockly.JavaScript['rawStartBlock'] = function(block) {
     var valueXml = Blockly.JavaScript.valueToCode(block, 'xmlVersion', Blockly.JavaScript.ORDER_ATOMIC);
     var valueEncoding = Blockly.JavaScript.valueToCode(block, 'encoding', Blockly.JavaScript.ORDER_ATOMIC);
@@ -176,3 +215,24 @@ Blockly.JavaScript['routines'] = function(block) {
     `;
     return code;
   };
+
+  Blockly.Blocks['new_boundary_function'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldTextInput("Boundary Function Name"), "Name");
+        this.appendStatementInput("Content")
+            .setCheck(null);
+        this.setInputsInline(true);
+        this.setColour(315);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.JavaScript['new_boundary_function'] = function (block) {
+    var text_name = block.getFieldValue('Name');
+    var statements_content = Blockly.JavaScript.statementToCode(block, 'Content');
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'def ' + text_name + '(_object,**kwargs):\n' + statements_content + '\n';
+    return code;
+}; */
