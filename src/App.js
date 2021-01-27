@@ -184,6 +184,7 @@ export default function App() {
             colour: '#ccc',
             snap: true,
           },
+          renderer: 'zelos',
         }}
         workspaceDidChange={workspaceDidChange}
       />
