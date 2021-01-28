@@ -162,10 +162,22 @@ export default function App() {
       ]
     }
     ];
- 
+  function download() {
+    const code = document.getElementById('code').value;
+    console.log(code)
+    const blob = new Blob([ code ], {type: "text/plain"});
+    const getFile = (blob) => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = 'filename.xml';
+      a.click();
+    }
+    getFile(blob);
+  }
   function workspaceDidChange(workspace) {
-    const newXml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace));
-    document.getElementById('generated-xml').innerText = newXml;
+    /* const newXml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace));
+    document.getElementById('generated-xml').innerText = newXml; */
 
     const code = Blockly.JavaScript.workspaceToCode(workspace);
     document.getElementById('code').value = code;
@@ -188,9 +200,8 @@ export default function App() {
         }}
         workspaceDidChange={workspaceDidChange}
       />
-      <pre id="generated-xml">
-      </pre>
       <textarea id="code" style={{ height: "200px", width: "400px" }}></textarea>
+      <button onClick={download}>Download</button>
     </>
   )
 }
