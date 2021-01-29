@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Kiwiblock Beta",
+  "name": "Blockly XML Editor for kiwibots routines",
   "icons": [
     {
       "src": "favicon.ico",

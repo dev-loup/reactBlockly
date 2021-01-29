@@ -1,167 +1,12 @@
 import './App.css';
-import './customBlocks/preblocks'
+import './customBlocks/preblocks';
+import { initialXml } from './tools/xmlFiles';
+import { toolboxCategories } from './tools/toolbox';
 import React from 'react'
 import ReactBlockly from 'react-blockly'
 import Blockly from 'blockly';
 
 export default function App() {
-  const initialXml = 
-    `<xml xmlns="http://www.w3.org/1999/xhtml">
-      <block type="rawStartBlock" x="3" y="3">
-        <value name="xmlVersion">
-            <block type="text">
-                <field name="TEXT">1.0</field>
-            </block>
-        </value>
-        <value name="encoding">
-            <block type="text">
-                <field name="TEXT">utf-8</field>
-            </block>
-        </value>
-      </block>
-    </xml>
-    `;
-  const toolboxCategories = [
-    {
-      name: 'Headers',
-      colour: '#5CA699',
-      blocks: [
-        {
-          type: 'startBlock',
-          values: {
-            maintainer: {
-              type: 'text',
-              fields: {
-                TEXT: 'abc'
-              },
-            },
-            mail: {
-              type: 'text',
-              fields: {
-                TEXT: 'mail@kiwibot.com'
-              },
-            },
-            area: {
-              type: 'text',
-              fields: {
-                TEXT: 'the Kiwi Campus: AI and Robotics Team'
-              },
-            },
-            xmlVersion: {
-              type: 'text',
-              fields: {
-                TEXT: '1.0'
-              },
-            },
-            encoding: {
-              type: 'text',
-              fields: {
-                TEXT: 'utf-8'
-              },
-            },
-          }
-        },
-        {
-          type: 'rawStartBlock',
-          values: {
-            xmlVersion: {
-              type: 'text',
-              fields: {
-                TEXT: '1.0'
-              },
-            },
-            encoding: {
-              type: 'text',
-              fields: {
-                TEXT: 'utf-8'
-              },
-            },
-          }
-        }
-      ]
-    },
-    {
-      name: 'Routines',
-      colour: '#5CA699',
-      blocks: [
-        {
-          type: 'routines',
-          values: {
-            id: {
-              type: 'math_number',
-              fields: {
-                NUM: 1
-              }
-            },
-            cycles: {
-              type: 'math_number',
-              fields: {
-                NUM: 1
-              }
-            },
-          }
-        },
-        {
-          type: 'moves',
-          values: {
-            time1: {
-              type: 'math_number',
-              fields: {
-                NUM: 1
-              }
-            },
-            time2: {
-              type: 'math_number',
-              fields: {
-                NUM: 1
-              }
-            },
-            linear: {
-              type: 'math_number',
-              fields: {
-                NUM: 1
-              }
-            },
-            angular: {
-              type: 'math_number',
-              fields: {
-                NUM: 1
-              }
-            },
-          }
-        },
-        {
-          type: 'features',
-          values: {
-            time1: {
-              type: 'math_number',
-              fields: {
-                NUM: 1
-              }
-            },
-            time2: {
-              type: 'math_number',
-              fields: {
-                NUM: 1
-              }
-            },
-            mode: {
-              type: 'text',
-              fields: {
-                TEXT: 1
-              }
-            },
-            value: {
-              type: 'math_number',
-              fields: {
-                NUM: 1
-              }
-            },
-          }
-        }
-      ]
-    }
-    ];
   function download() {
     const code = document.getElementById('code').value;
     console.log(code)
@@ -176,9 +21,6 @@ export default function App() {
     getFile(blob);
   }
   function workspaceDidChange(workspace) {
-    /* const newXml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace));
-    document.getElementById('generated-xml').innerText = newXml; */
-
     const code = Blockly.JavaScript.workspaceToCode(workspace);
     document.getElementById('code').value = code;
   }
@@ -200,7 +42,8 @@ export default function App() {
         }}
         workspaceDidChange={workspaceDidChange}
       />
-      <textarea id="code" style={{ height: "200px", width: "400px" }}></textarea>
+      <label htmlFor="code">Gazeebo XML Viewer</label>
+      <textarea id="code"></textarea>
       <button onClick={download}>Download</button>
     </>
   )
