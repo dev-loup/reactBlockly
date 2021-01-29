@@ -21,6 +21,7 @@ export default function App() {
     getFile(blob);
   }
   function workspaceDidChange(workspace) {
+    workspace.addChangeListener(Blockly.Events.disableOrphans);
     const code = Blockly.JavaScript.workspaceToCode(workspace);
     document.getElementById('code').value = code;
   }
@@ -37,6 +38,14 @@ export default function App() {
             length: 3,
             colour: '#ccc',
             snap: true,
+          },
+          zoom: {
+            controls: true,
+            wheel: true,
+            startScale: 1.0,
+            minScale: 0.3,
+            scaleSpeed: 1.2,
+            pinch:true
           },
           renderer: 'zelos',
         }}
