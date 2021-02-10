@@ -6,14 +6,13 @@ import React from 'react'
 import ReactBlockly from 'react-blockly'
 import Blockly from 'blockly';
 
-const Download = (text) => {
-  console.log(text)
+const Download = (text, filename) => {
   const blob = new Blob([ text ], {type: "text/plain"});
   const getFile = (blob) => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = 'filename.xml';
+    a.download = filename;
     a.click();
   }
   getFile(blob);
@@ -62,8 +61,8 @@ export default function App() {
       />
       <TextArea label="code">Gazeebo XML Code</TextArea>
       <TextArea label="XML">Blockly code</TextArea>
-      <button onClick={() => Download(document.getElementById('code').value)}>Download</button>
-      <button onClick={() => Download(document.getElementById('XML').value)}>Download Blockly XML</button>
+      <button onClick={() => Download(document.getElementById('code').value, 'gazeebo.xml')}>Download</button>
+      <button onClick={() => Download(document.getElementById('XML').value, 'blockly.xml')}>Download Blockly XML</button>
     </>
   )
 }
