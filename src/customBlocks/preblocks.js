@@ -152,10 +152,10 @@ Blockly.JavaScript['rawStartBlock'] = function(block) {
 };
 
 Blockly.JavaScript['moves'] = function(block) {
-    const value_time1 = Blockly.JavaScript.valueToCode(block, 'time1', Blockly.JavaScript.ORDER_ATOMIC);
-    const value_time2 = Blockly.JavaScript.valueToCode(block, 'time2', Blockly.JavaScript.ORDER_ATOMIC);
-    const value_linear = Blockly.JavaScript.valueToCode(block, 'linear', Blockly.JavaScript.ORDER_ATOMIC);
-    const value_angular = Blockly.JavaScript.valueToCode(block, 'angular', Blockly.JavaScript.ORDER_ATOMIC);
+    const value_time1 = Blockly.JavaScript.valueToCode(block, 'time1', Blockly.JavaScript.ORDER_ATOMIC).replace(/(\(|\))/gmi,'');
+    const value_time2 = Blockly.JavaScript.valueToCode(block, 'time2', Blockly.JavaScript.ORDER_ATOMIC).replace(/(\(|\))/gmi,'');
+    const value_linear = Blockly.JavaScript.valueToCode(block, 'linear', Blockly.JavaScript.ORDER_ATOMIC).replace(/(\(|\))/gmi,'');
+    const value_angular = Blockly.JavaScript.valueToCode(block, 'angular', Blockly.JavaScript.ORDER_ATOMIC).replace(/(\(|\))/gmi,'');
     const code = `  <action type='0' time_1='${value_time1}' time_2='${value_time2}' linear='${value_linear}' angular='${value_angular}'></action>\n`;
     return code;
 };
@@ -163,17 +163,17 @@ Blockly.JavaScript['moves'] = function(block) {
 
 Blockly.JavaScript['features'] = function(block) {
     const dropdown_feature = block.getFieldValue('feature');
-    const value_time1 = Blockly.JavaScript.valueToCode(block, 'time1', Blockly.JavaScript.ORDER_ATOMIC);
-    const value_time2 = Blockly.JavaScript.valueToCode(block, 'time2', Blockly.JavaScript.ORDER_ATOMIC);
-    const value_mode = Blockly.JavaScript.valueToCode(block, 'mode', Blockly.JavaScript.ORDER_ATOMIC);
-    const value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
+    const value_time1 = Blockly.JavaScript.valueToCode(block, 'time1', Blockly.JavaScript.ORDER_ATOMIC).replace(/(\(|\))/gmi,'');
+    const value_time2 = Blockly.JavaScript.valueToCode(block, 'time2', Blockly.JavaScript.ORDER_ATOMIC).replace(/(\(|\))/gmi,'');
+    const value_mode = Blockly.JavaScript.valueToCode(block, 'mode', Blockly.JavaScript.ORDER_ATOMIC).replace(/(\(|\))/gmi,'');
+    const value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC).replace(/(\(|\))/gmi,'');
     const code = `  <action type='${dropdown_feature}' time_1='${value_time1}' time_2='${value_time2}' mode=${value_mode} value='${value_value}'></action>\n`;
     return code;
 };
 
 Blockly.JavaScript['routines'] = function(block) {
-    const value_id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC);
-    const value_cycles = Blockly.JavaScript.valueToCode(block, 'cycles', Blockly.JavaScript.ORDER_ATOMIC);
+    const value_id = Blockly.JavaScript.valueToCode(block, 'id', Blockly.JavaScript.ORDER_ATOMIC).replace(/(\(|\))/gmi,'');
+    const value_cycles = Blockly.JavaScript.valueToCode(block, 'cycles', Blockly.JavaScript.ORDER_ATOMIC).replace(/(\(|\))/gmi,'');
     const statements_routinelist = Blockly.JavaScript.statementToCode(block, 'routineList');
     const code =
 `

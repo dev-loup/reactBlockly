@@ -6,24 +6,33 @@ import React from 'react'
 import ReactBlockly from 'react-blockly'
 import Blockly from 'blockly';
 
-export default function App() {
-  function download() {
-    const code = document.getElementById('code').value;
-    console.log(code)
-    const blob = new Blob([ code ], {type: "text/plain"});
-    const getFile = (blob) => {
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = 'filename.xml';
-      a.click();
-    }
-    getFile(blob);
+const Download = (text) => {
+  console.log(text)
+  const blob = new Blob([ text ], {type: "text/plain"});
+  const getFile = (blob) => {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = 'filename.xml';
+    a.click();
   }
+  getFile(blob);
+}
+const TextArea = ({label, children}) => {
+  return (
+  <>
+    <label htmlFor={label}>{children}</label>
+    <textarea id={label}></textarea>
+  </>
+  )
+}
+export default function App() {
   function workspaceDidChange(workspace) {
     workspace.addChangeListener(Blockly.Events.disableOrphans);
     const code = Blockly.JavaScript.workspaceToCode(workspace);
     document.getElementById('code').value = code;
+    const xmlDOM = Blockly.Xml.workspaceToDom(workspace)
+    document.getElementById('XML').value = Blockly.Xml.domToPrettyText(xmlDOM);
   }
 
   return (
@@ -51,9 +60,10 @@ export default function App() {
         }}
         workspaceDidChange={workspaceDidChange}
       />
-      <label htmlFor="code">Gazeebo XML Viewer</label>
-      <textarea id="code"></textarea>
-      <button onClick={download}>Download</button>
+      <TextArea label="code">Gazeebo XML Code</TextArea>
+      <TextArea label="XML">Blockly code</TextArea>
+      <button onClick={() => Download(document.getElementById('code').value)}>Download</button>
+      <button onClick={() => Download(document.getElementById('XML').value)}>Download Blockly XML</button>
     </>
   )
 }

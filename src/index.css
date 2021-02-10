@@ -7,9 +7,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-#code {
+textarea {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-  width: calc(80vh);
+  width: calc(40vh);
   height: calc(30vh - 10px);
 }
